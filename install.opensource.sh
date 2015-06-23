@@ -13,11 +13,11 @@ echo ""
 yum install -y golang
 
 additional_packages=""
-if [ ! -z "$(echo $args| grep '--include-git')" ]; then
+if [ ! -z "$(echo $args| grep 'include-git')" ]; then
   additional_packages="$additional_packages git"
 fi
 
-if [ ! -z "$(echo $args| grep '--include-hg')" ]; then
+if [ ! -z "$(echo $args| grep 'include-hg')" ]; then
   additional_packages="$additional_packages hg"
 fi
 
