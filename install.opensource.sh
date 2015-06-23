@@ -14,7 +14,8 @@ echo ""
 echo "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
 echo ""
 
-mkdir -p $HOME/.go
+mkdir $HOME/.go
+mkdir $HOME/.go/bin
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 
