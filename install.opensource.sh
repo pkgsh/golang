@@ -25,6 +25,8 @@ if [ ! -z "$additional_packages" ]; then
   yum install -y $additional_packages
 fi
 
+if [ ! -d "$HOME/.go" ]; then
+
 echo ""
 echo "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
 echo ""
@@ -42,6 +44,7 @@ export PATH=\$PATH:\$GOPATH/bin
 
 EOF
 
+fi
 echo ""
 echo "Golang was installed successfully"
 echo ""
