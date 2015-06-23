@@ -1,15 +1,9 @@
 args=$@;
 
-echo ""
-echo "Installing Epel"
-echo ""
-
+describe "Installing Epel"
 rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
-echo ""
-echo "Installing golang and dependencies"
-echo ""
-
+describe "Installing golang and dependencies"
 yum install -y golang
 
 additional_packages=""
@@ -22,14 +16,13 @@ if [ ! -z "$(echo $args| grep 'include-hg')" ]; then
 fi
 
 if [ ! -z "$additional_packages" ]; then
+  describe "Installing additional packages ${$additional_packages}"
   yum install -y $additional_packages
 fi
 
 if [ ! -d "$HOME/.go" ]; then
 
-echo ""
-echo "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
-echo ""
+describe "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
 
 mkdir $HOME/.go
 mkdir $HOME/.go/bin
@@ -43,8 +36,6 @@ export GOPATH=\$HOME/.go
 export PATH=\$PATH:\$GOPATH/bin
 
 EOF
-
 fi
-echo ""
-echo "Golang was installed successfully"
-echo ""
+
+success "Golang was installed successfully"
