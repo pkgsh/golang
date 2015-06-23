@@ -1,3 +1,5 @@
+args=$@;
+
 echo ""
 echo "Installing Epel"
 echo ""
@@ -8,7 +10,18 @@ echo ""
 echo "Installing golang and dependencies"
 echo ""
 
-yum install -y golang hg git
+yum install -y golang
+
+additional_packages=""
+if [ ! -z "$(echo $args| grep '--include-git')" ]; then
+  additional_packages="$additional_packages git"
+fi
+
+if [ ! -z "$(echo $args| grep '--include-hg')" ]; then
+  additional_packages="$additional_packages hg"
+fi
+
+yum install -y $additional_packages
 
 echo ""
 echo "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
