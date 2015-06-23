@@ -21,7 +21,9 @@ if [ ! -z "$(echo $args| grep '--include-hg')" ]; then
   additional_packages="$additional_packages hg"
 fi
 
-yum install -y $additional_packages
+if [ ! -z "$additional_packages" ]; then
+  yum install -y $additional_packages
+fi
 
 echo ""
 echo "Creating Go dir in $HOME/.go and exporting GOPATH and etc."
